@@ -1,0 +1,45 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+<h2>Expense Report  Form</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ <strong>{{message }}</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form  method="POST" >
+    {{ form.hidden_tag() }}
+  <table border = "0" cellspacing=20%>
+
+         <tr>
+            <th>{{ form.moneyspent.label }}</th>
+            <td>:</td>
+            <td>{{ form.moneyspent }}</td>
+         </tr>
+         <tr>
+            <th>{{ form.fullname.label }}</th>
+            <td>:</td>
+            <td>{{ form.fullname }}</td>
+         </tr>
+         <tr>
+            <th>{{ form.reason.label }}</th>
+            <td>:</td>
+            <td>{{ form.reason }}</td>
+         </tr>
+
+
+      </table>
+      <br>
+      <br>
+         {{ form.submit() }}
+    </form>
+
+{% endblock %}

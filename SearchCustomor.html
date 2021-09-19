@@ -1,0 +1,124 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+<h1>Search Customer</h1>
+
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     <strong>{{message }}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.user.label }} {{ form.user }}
+
+   {{ form.submit() }}
+
+    </form>
+
+
+   {% if cust %}
+   <h1>Customer Details</h1>
+   <br>
+   <form action="{{url_for('EditCustomerDetails',id=id,cid=cust.C_id)}}">
+    <input type="submit" value="Edit Customer Details" />
+</form>
+<br>
+<form action="{{url_for('Transaction',id=id,cid=cust.C_id)}}">
+ <input type="submit" value="Go with Transaction" />
+</form>
+<br>
+<form action="{{url_for('New_Visitor_Log',id=id,cid=cust.C_id)}}">
+ <input type="submit" value="Enter New Visitor Log" />
+</form>
+
+
+   <br>
+   <table border = "0" cellspacing=20%>
+     <tr>
+        <th>Patient Id</th>
+        <td>:</td>
+        <td>{{ cust.C_id }}</td>
+     </tr>
+     <tr>
+        <th>First Name</th>
+        <td>:</td>
+        <td>{{ cust.C_firstname }}</td>
+     </tr>
+     <tr>
+        <th>Last Name</th>
+        <td>:</td>
+        <td>{{ cust.C_lastname }}</td>
+     </tr>
+     <tr>
+        <th>Gender</th>
+        <td>:</td>
+        <td>{{ cust.C_gender }}</td>
+     </tr>
+
+   <tr>
+     <th>Email</th>
+     <td>:</td>
+     <td>{{ cust.C_email }}</td>
+   </tr>
+
+   <tr>
+     <th>Phone Number </th>
+     <td>:</td>
+     <td>{{ cust.C_number }}</td>
+   </tr>
+
+   <tr>
+     <th>Age</th>
+     <td>:</td>
+     <td>{{ cust.C_age }}</td>
+   </tr>
+   <tr>
+     <th>Address </th>
+     <td>:</td>
+     <td>{{ cust.C_address }}</td>
+   </tr>
+
+   <tr>
+     <th>Intial Month Charge </th>
+     <td>:</td>
+     <td>{{ cust.C_Intial_Month_charge }}</td>
+   </tr>
+   <tr>
+     <th>charge </th>
+     <td>:</td>
+     <td>{{ cust.C_charge }}</td>
+   </tr>
+   <tr>
+     <th>Join Date </th>
+     <td>:</td>
+     <td>{{ cust.C_join_date }}</td>
+   </tr>
+   <tr>
+     <th>Join Time </th>
+     <td>:</td>
+     <td>{{ cust.C_join_time }}</td>
+   </tr>
+
+</table>
+
+
+
+   {% else %}
+     <p>.</p>
+   {% endif %}
+
+{% endblock %}

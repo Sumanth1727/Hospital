@@ -1,0 +1,36 @@
+
+{% extends "admin.html"%}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ <strong>{{message }}</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<h1>Enter Month and Year to generate the charges for all patients for that month</h1>
+
+    <br>
+    <br>
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.Month.label }} {{ form.Month }}
+    {{ form.Year.label }} {{ form.Year }}
+
+   {{ form.submit() }}
+
+    </form>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,103 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+<h1>select Month and year for specific Reports</h1>
+
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     <strong>{{message }}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.Month.label }} {{ form.Month }}
+    {{ form.Year.label }} {{ form.Year }}
+   {{ form.submit() }}
+
+    </form>
+
+    <h1>Expenses List</h1>
+    <br>
+
+    <br>
+
+{% if search %}
+{% if expense %}
+<table style="border: 1px solid black;" cellspacing=20%>
+<tr style="border: 1px solid black;">
+   <th style="border: 1px solid black;">Id</th>
+   <th style="border: 1px solid black;">Money Spent</th>
+   <th style="border: 1px solid black;">Used by (Name) </th>
+   <th style="border: 1px solid black;">Reason </th>
+   <th style="border: 1px solid black;">Date </th>
+   <th style="border: 1px solid black;">Time </th>
+
+
+   </tr>
+   {% for exp in expense %}
+   <tr style="border: 1px solid black;">
+     <td style="border: 1px solid black;">{{ exp.E_id }}</td>
+     <td style="border: 1px solid black;">{{ exp.E_moneyspent }}</td>
+     <td style="border: 1px solid black;">{{ exp.E_fullname }}</td>
+     <td style="border: 1px solid black;">{{ exp.E_reason }}</td>
+     <td style="border: 1px solid black;">{{ exp.E_month }} {{ exp.E_day }} {{ exp.E_year }}</td>
+     <td style="border: 1px solid black;">{{ exp.E_Time }}</td>
+
+
+   </tr>
+  {% endfor %}
+</table>
+
+
+
+{% else %}
+<h6>No Expense reports found For the searched Month and Year</h6>
+
+{% endif %}
+
+
+ {% else %}
+ <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Id</th>
+      <th style="border: 1px solid black;">Money Spent</th>
+      <th style="border: 1px solid black;">Used by (Name) </th>
+        <th style="border: 1px solid black;">Reason </th>
+      <th style="border: 1px solid black;">Date </th>
+      <th style="border: 1px solid black;">Time </th>
+
+
+      </tr>
+      {% for exp in expenses %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ exp.E_id }}</td>
+        <td style="border: 1px solid black;">{{ exp.E_moneyspent }}</td>
+        <td style="border: 1px solid black;">{{ exp.E_fullname }}</td>
+        <td style="border: 1px solid black;">{{ exp.E_reason }}</td>
+        <td style="border: 1px solid black;">{{ exp.E_month }} {{ exp.E_day }} {{ exp.E_year }}</td>
+        <td style="border: 1px solid black;">{{ exp.E_Time }}</td>
+
+
+      </tr>
+   {% endfor %}
+ </table>
+
+
+ {% endif %}
+
+
+
+{% endblock %}

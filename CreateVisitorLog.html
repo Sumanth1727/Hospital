@@ -1,0 +1,95 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+<h2>Visitor log  Form</h2>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ <strong>{{message }}</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<table border = "0" cellspacing=20%>
+
+       <tr>
+          <th>Patient Id</th>
+          <td>:</td>
+          <td>{{ cust.C_id }}</td>
+       </tr>
+       <tr>
+          <th>Patient Name</th>
+          <td>:</td>
+          <td>{{ cust.C_firstname }}   {{ cust.C_lastname }}</td>
+       </tr>
+</table>
+<br>
+<br>
+<h4>Enter vistor details</h4>
+<br>
+<br>
+<form  method="POST" >
+    {{ form.hidden_tag() }}
+  <table border = "0" cellspacing=20%>
+
+         <tr>
+            <th>{{ form.firstname.label }}</th>
+            <td>:</td>
+            <td>{{ form.firstname }}</td>
+         </tr>
+         <tr>
+            <th>{{ form.lastname.label }}</th>
+            <td>:</td>
+            <td>{{ form.lastname }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.phone.label }} </th>
+           <td>:</td>
+           <td>{{ form.phone }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.Droppeditems.label }}</th>
+           <td>:</td>
+           <td>{{ form.Droppeditems }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.address.label }} </th>
+           <td>:</td>
+           <td>{{ form.address }}</td>
+         </tr>
+         <tr>
+           <th>{{ form.Relationship_with_Patient.label }} </th>
+           <td>:</td>
+           <td>{{ form.Relationship_with_Patient }}</td>
+         </tr>
+         
+         <tr>
+           <th>{{ form.Comments.label }} </th>
+           <td>:</td>
+           <td>{{ form.Comments }}</td>
+         </tr>
+         <tr>
+           <th>{{ form.Entered_by.label }} </th>
+           <td>:</td>
+           <td>{{ form.Entered_by }}</td>
+         </tr>
+
+      </table>
+      <br>
+      <br>
+         {{ form.submit() }}
+    </form>
+
+{% endblock %}

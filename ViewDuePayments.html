@@ -1,0 +1,101 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+<h1>Search Customer for Customer Specific Due List</h1>
+
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     <strong>{{message }}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.user.label }} {{ form.user }}
+
+   {{ form.submit() }}
+
+    </form>
+
+    <h1>Due List</h1>
+    <br>
+    <p>click on <b>Do Payment </b>to do payments</p>
+    <br>
+
+
+   {% if dues1 %}
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Id</th>
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Patient Name </th>
+      <th style="border: 1px solid black;">Month </th>
+      <th style="border: 1px solid black;">Year </th>
+      <th style="border: 1px solid black;">Due Amount </th>
+      <th style="border: 1px solid black;"></th>
+
+
+
+      </tr>
+      {% for due1 in dues1 %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ due1.Ch_id }}</td>
+        <td style="border: 1px solid black;">{{ due1.C_id }}</td>
+        <td style="border: 1px solid black;">{{ due1.C_fullname }}</td>
+        <td style="border: 1px solid black;">{{ due1.Month }}</td>
+        <td style="border: 1px solid black;">{{ due1.Year }}</td>
+        <td style="border: 1px solid black;">{{ due1.Amount_due }}</td>
+        <td style="border: 1px solid black;"><a href="{{url_for('PayPatientDues',id=id,Ch_id=due1.Ch_id)}}">Do Payment</a></td>
+
+
+      </tr>
+     {% endfor %}
+   </table>
+
+
+
+   {% else %}
+
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Id</th>
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Patient Name </th>
+      <th style="border: 1px solid black;">Month </th>
+      <th style="border: 1px solid black;">Year </th>
+      <th style="border: 1px solid black;">Due Amount </th>
+      <th style="border: 1px solid black;"></th>
+
+
+
+      </tr>
+      {% for Due in Dues %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ Due.Ch_id }}</td>
+        <td style="border: 1px solid black;">{{ Due.C_id }}</td>
+        <td style="border: 1px solid black;">{{ Due.C_fullname }}</td>
+        <td style="border: 1px solid black;">{{ Due.Month }}</td>
+        <td style="border: 1px solid black;">{{ Due.Year }}</td>
+        <td style="border: 1px solid black;">{{ Due.Amount_due }}</td>
+        <td style="border: 1px solid black;"><a href="{{url_for('PayPatientDues',id=id,Ch_id=Due.Ch_id)}}">Do Payment</a></td>
+
+
+      </tr>
+     {% endfor %}
+   </table>
+
+   {% endif %}
+
+{% endblock %}

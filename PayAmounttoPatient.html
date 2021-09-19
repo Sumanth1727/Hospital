@@ -1,0 +1,95 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ <strong>{{message }}</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<h1>Respective Patient Details </h1>
+<b>Patient Id </b> : {{chrg.C_id}}
+<br>
+<b>Patient Name</b>: {{chrg.C_fullname}}
+<br>
+<br>
+<b>Patient Due Amount</b>: {{chrg.Amount_due}}
+<br>
+<br>
+
+<b>Total Amount available for Patient </b> : {{T_amount}}
+<h1>Active Transactions Linked to the Customer</h1>
+
+{% for tran in trans %}
+{% if tran.T_Amount_remaining >0 %}
+<table border = "0" cellspacing=20%>
+  <tr>
+     <th>Transaction Id </th>
+     <td>:</td>
+     <td>{{ tran.T_id }}</td>
+  </tr>
+  <tr>
+     <th>Transaction Type</th>
+     <td>:</td>
+     <td>{{ tran.T_type }}</td>
+  </tr>
+  <tr>
+     <th>Deposited by</th>
+     <td>:</td>
+     <td>{{ tran.T_fullname }}</td>
+  </tr>
+  <tr>
+     <th>Phone Number</th>
+     <td>:</td>
+     <td>{{ tran.T_phonenumber }}</td>
+  </tr>
+
+<tr>
+  <th>Amount Paid</th>
+  <td>:</td>
+  <td>{{ tran.T_Amount_paid }}</td>
+</tr>
+
+<tr>
+  <th>Amount Remaining </th>
+  <td>:</td>
+  <td>{{ tran.T_Amount_remaining }}</td>
+</tr>
+<tr>
+  <th>Transaction Date and Time </th>
+  <td>:</td>
+  <td>{{ tran.T_date }}  {{ tran.T_time }} </td>
+</tr>
+
+
+</table>
+<p>-------------------------------------------------------------------------------------</p>
+<p>-------------------------------------------------------------------------------------</p>
+
+{% endif %}
+{% endfor %}
+
+<br>
+<br>
+<br>
+<form  method="POST" >
+    {{ form.hidden_tag() }}
+    {{ form.AmounttobePaid.label }} {{ form.AmounttobePaid }}
+      <br>
+      <br>
+         {{ form.submit() }}
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

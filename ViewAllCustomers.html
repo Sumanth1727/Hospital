@@ -1,0 +1,116 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+<h1>Search Customer for Customer Specific Due List</h1>
+
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     <strong>{{message }}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.user.label }} {{ form.user }}
+
+   {{ form.submit() }}
+
+    </form>
+
+    <h1>Inner Transaction List</h1>
+    <br>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   {% if cust %}
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Patient Name </th>
+      <th style="border: 1px solid black;">Address </th>
+      <th style="border: 1px solid black;">Reason for Joining</th>
+
+
+      </tr>
+
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ cust.C_id }}</td>
+        <td style="border: 1px solid black;">{{ cust.C_firstname }}  {{ cust.C_lastname }}</td>
+        <td style="border: 1px solid black;">{{ cust.C_address }}</td>
+        <td style="border: 1px solid black;">{{ cust.C_Reason_for_joining }}</td>
+
+
+
+
+      </tr>
+
+   </table>
+
+
+
+   {% else %}
+
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Patient Name </th>
+      <th style="border: 1px solid black;">Address </th>
+      <th style="border: 1px solid black;">Reason for Joining</th>
+
+
+      </tr>
+      {% for cust1 in custs %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ cust1.C_id }}</td>
+        <td style="border: 1px solid black;">{{ cust1.C_firstname }}  {{ cust1.C_lastname }}</td>
+        <td style="border: 1px solid black;">{{ cust1.C_address }}</td>
+        <td style="border: 1px solid black;">{{ cust1.C_Reason_for_joining }}</td>
+
+
+
+
+      </tr>
+     {% endfor %}
+   </table>
+
+
+   {% endif %}
+
+{% endblock %}

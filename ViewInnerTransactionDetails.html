@@ -1,0 +1,145 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+
+<h1>Search Customer for Customer Specific Due List</h1>
+
+    <br>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+     <strong>{{message }}</strong>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form action="" method="post" novalidate>
+
+  {{ form.hidden_tag() }}
+
+   {{ form.user.label }} {{ form.user }}
+
+   {{ form.submit() }}
+
+    </form>
+
+    <h1>Inner Transaction List</h1>
+    <br>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   {% if tran %}
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Inner Transaction Id</th>
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Charge Id </th>
+      <th style="border: 1px solid black;">Charge Month </th>
+      <th style="border: 1px solid black;">charge Year </th>
+      <th style="border: 1px solid black;">Charge Due Amount Before Transaction</th>
+      <th style="border: 1px solid black;">Charge Due Amount after Transaction</th>
+      <th style="border: 1px solid black;">Transaction Id Used for payment</th>
+      <th style="border: 1px solid black;">Amont Present before trasaction</th>
+      <th style="border: 1px solid black;">Amont Present after trasaction </th>
+      <th style="border: 1px solid black;">Time</th>
+      <th style="border: 1px solid black;">Date</th>
+
+
+      </tr>
+      {% for tran1 in tran %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ tran1.IT_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.C_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Ch_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Month }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Year }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Charge_due }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Charge_due_after_payment }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_Amount_remaining }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_Amount_remaining_after_payment }}</td>
+        <td style="border: 1px solid black;">{{ tran1.IT_time }}</td>
+        <td style="border: 1px solid black;">{{ tran1.IT_date }}</td>
+
+
+
+      </tr>
+     {% endfor %}
+   </table>
+
+
+
+   {% else %}
+
+   <table style="border: 1px solid black;" cellspacing=20%>
+   <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;">Inner Transaction Id</th>
+      <th style="border: 1px solid black;">Patient Id</th>
+      <th style="border: 1px solid black;">Charge Id </th>
+      <th style="border: 1px solid black;">Charge Month </th>
+      <th style="border: 1px solid black;">charge Year </th>
+      <th style="border: 1px solid black;">Charge Due Amount Before Transaction</th>
+      <th style="border: 1px solid black;">Charge Due Amount after Transaction</th>
+      <th style="border: 1px solid black;">Transaction Id Used for payment</th>
+      <th style="border: 1px solid black;">Amont Present before trasaction</th>
+      <th style="border: 1px solid black;">Amont Present after trasaction </th>
+      <th style="border: 1px solid black;">Time</th>
+      <th style="border: 1px solid black;">Date</th>
+
+
+      </tr>
+      {% for tran1 in trans %}
+      <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{ tran1.IT_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.C_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Ch_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Month }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Year }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Charge_due }}</td>
+        <td style="border: 1px solid black;">{{ tran1.Charge_due_after_payment }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_id }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_Amount_remaining }}</td>
+        <td style="border: 1px solid black;">{{ tran1.T_Amount_remaining_after_payment }}</td>
+        <td style="border: 1px solid black;">{{ tran1.IT_time }}</td>
+        <td style="border: 1px solid black;">{{ tran1.IT_date }}</td>
+
+
+
+      </tr>
+     {% endfor %}
+   </table>
+
+   {% endif %}
+
+{% endblock %}

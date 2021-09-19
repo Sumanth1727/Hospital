@@ -1,0 +1,23 @@
+
+{% extends "admin.html"%}
+
+{% block content %}
+
+<h1>Search for the id or Email to Edit</h1>
+
+    <br>
+    <br>
+<form action="" method="post" novalidate>
+
+  {{ form1.hidden_tag() }}
+
+   {{ form1.user.label }} {{ form1.user }}
+
+   {{ form1.submit() }}
+
+    </form>
+
+
+
+
+{% endblock %}

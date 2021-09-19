@@ -1,0 +1,88 @@
+
+{% extends "admin.html"%}
+
+{% block content %}
+
+   <h1>Edit Customer Details</h1>
+   <br>
+   <br>
+
+
+   {% with messages = get_flashed_messages() %}
+       {% if messages %}
+           {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                         </div>
+
+           {% endfor %}
+       {% endif %}
+   {% endwith %}
+   <form action="" method="post" novalidate>
+       {{ form.hidden_tag() }}
+
+     <table border = "0" cellspacing=20%>
+       <tr>
+          <th>Customer id</th>
+          <td>:</td>
+            <td>{{custm.C_id}}</td>
+
+       </tr>
+       <tr>
+          <th>Email</th>
+          <td>:</td>
+          <td>{{ custm.C_email }}</td>
+
+
+       </tr>
+
+            <tr>
+               <th>{{ form.firstname.label }}</th>
+               <td>:</td>
+
+               <td>{{ form.firstname(placeholder=custm.C_firstname) }}</td>
+            </tr>
+            <tr>
+               <th>{{ form.lastname.label }}</th>
+               <td>:</td>
+               <td>{{ form.lastname(placeholder=custm.C_lastname) }}</td>
+            </tr>
+            <tr>
+               <th>{{ form.gender.label }}</th>
+               <td>:</td>
+
+               <td>{{ form.gender(placeholder=custm.C_gender) }}</td>
+            </tr>
+
+
+
+            <tr>
+              <th>{{ form.phone.label }} </th>
+              <td>:</td>
+
+              <td>{{ form.phone(placeholder=custm.C_number) }}</td>
+            </tr>
+
+            <tr>
+              <th>{{ form.age.label }}</th>
+              <td>:</td>
+
+              <td>{{ form.age(placeholder=custm.C_age) }}</td>
+            </tr>
+
+            <tr>
+              <th>{{ form.address.label }} </th>
+              <td>:</td>
+
+              <td>{{ form.address(placeholder=custm.C_address) }}</td>
+            </tr>
+
+         </table>
+         <br>
+         <br>
+            {{ form.submit() }}
+       </form>
+
+
+{% endblock %}

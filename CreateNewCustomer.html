@@ -1,0 +1,88 @@
+
+{% extends "admin.html"%}
+
+
+{% block content %}
+<h2>Customer Registration Form</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ <strong>{{message }}</strong>
+ <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form  method="POST" >
+    {{ form.hidden_tag() }}
+  <table border = "0" cellspacing=20%>
+
+         <tr>
+            <th>{{ form.firstname.label }}</th>
+            <td>:</td>
+            <td>{{ form.firstname }}</td>
+         </tr>
+         <tr>
+            <th>{{ form.lastname.label }}</th>
+            <td>:</td>
+            <td>{{ form.lastname }}</td>
+         </tr>
+         <tr>
+            <th>{{ form.gender.label }}</th>
+            <td>:</td>
+            <td>{{ form.gender }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.email.label }}</th>
+           <td>:</td>
+           <td>{{ form.email }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.phone.label }} </th>
+           <td>:</td>
+           <td>{{ form.phone }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.age.label }}</th>
+           <td>:</td>
+           <td>{{ form.age }}</td>
+         </tr>
+
+         <tr>
+           <th>{{ form.address.label }} </th>
+           <td>:</td>
+           <td>{{ form.address }}</td>
+         </tr>
+         <tr>
+           <th>{{ form.Intial_Month_charge.label }} </th>
+           <td>:</td>
+           <td>{{ form.Intial_Month_charge }}</td>
+         </tr>
+         <tr>
+           <th>Charge Interval </th>
+           <td>:</td>
+           <td>Monthly</td>
+         </tr>
+         <tr>
+           <th>{{ form.charge.label }} </th>
+           <td>:</td>
+           <td>{{ form.charge }}</td>
+         </tr>
+         <tr>
+           <th>{{ form.Reason_for_joining.label }} </th>
+           <td>:</td>
+           <td>{{ form.Reason_for_joining }}</td>
+         </tr>
+
+      </table>
+      <br>
+      <br>
+         {{ form.submit() }}
+    </form>
+
+{% endblock %}
